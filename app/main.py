@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 import logging
 from .config.settings import settings
 from .config.database import connect_to_mongo, close_mongo_connection
-from .routes import auth, users, products
+from .routes import auth, users, products, brands
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -109,6 +109,11 @@ app.include_router(
     tags=["Products"]
 )
 
+app.include_router(
+    brands.router,
+    prefix=f"{settings.api_v1_str}/brands",
+    tags=["Brands"]
+)
 
 # Root endpoint
 @app.get("/")

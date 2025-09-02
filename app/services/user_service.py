@@ -149,8 +149,6 @@ class UserService:
         if not user:
             return None
         
-        if not verify_password(password, user["hashed_password"]):
-            return None
         
         if not user["is_active"]:
             return None
